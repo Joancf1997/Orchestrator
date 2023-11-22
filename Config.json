@@ -1,0 +1,9 @@
+{
+    "DB": {
+        "database": "DMT",
+        "host": "localhost",
+        "user": "joseandres",
+        "password": "",
+        "port": "5432"
+    }
+}

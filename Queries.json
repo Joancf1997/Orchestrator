@@ -1,0 +1,20 @@
+{
+    "Extract": { 
+        "files": [
+            "ext_stations.sql",
+            "ext_cointries.sql"
+        ]
+    },
+
+    "Transform": { 
+        "files": [
+            "tra_locations.sql"
+        ]
+    },
+
+    "Load": { 
+        "files": [
+            "load_data.sql"
+        ]
+    }
+}
