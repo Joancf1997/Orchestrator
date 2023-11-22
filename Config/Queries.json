@@ -16,5 +16,11 @@
         "files": [
             "load_data.sql"
         ]
+    },
+
+    "Drop": { 
+        "files": [
+            "drop.sql"
+        ]
     }
 }

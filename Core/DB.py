@@ -1,5 +1,7 @@
 # Class to administrate the conection with a PostgresSQL Database
 import psycopg2    # pip3 install psycopg2-binary / https://pypi.org/project/psycopg2-binary/
+from psycopg2 import extras
+import pandas as pd
 
 
 # Class to interact with the database
@@ -29,7 +31,7 @@ class DB():
                 password=self.passw, 
                 port=self.port
             )
-            self.cursor = self.conn.cursor()
+            self.cursor = self.conn.cursor(cursor_factory=extras.DictCursor)
             print("Database connected successfully!!")
             return self
         except (Exception, psycopg2.DatabaseError) as error:
@@ -60,9 +62,15 @@ class DB():
         
 
     # Function to insert a dataframe into a table
-    def insert_dataframe(self): 
-        print("Inserting dataframe.. ")
+    def execute_sql_insert(self, query, values): 
+        self.cursor.executemany(query, values)
+        return self.conn.commit()
 
-    # Function to execute a select query and return the data
-    def select_query(self): 
-        print("Inserting dataframe.. ")
+
+
+    # Function to execute a select query and return the result
+    def execute_sql_select(self, query): 
+        self.cursor.execute(query)
+        data = self.cursor.fetchall()
+        columns = [desc[0] for desc in self.cursor.description]
+        return pd.DataFrame(data, columns = columns)

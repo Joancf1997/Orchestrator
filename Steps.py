@@ -1,24 +1,28 @@
 # List of steps to be exetuted 
 
-
 class Steps(): 
     def __init__(self):
         self.payload = None
+        self.helper = None
 
-    def Extract():
-        print("Executing Reading step")
-        # Simulating a potential failure
+    def Extract(self):
+        pass
+        
 
-    def Transform():
-        # Your implementation for the second function
-        print("Executing transformation step")
+    def Transform(self):
+        pass
 
-    def Load():
+
+    def Load(self):
         # Your implementation for the third function
-        print("Executing loading step")
+        pass
 
-    def clean_work(): 
-        print("Drop all tables")
+    def work(self):
+        alerts = self.helper.execute_sql_select("SQL/Individual/alerts.sql")
+        self.helper.insert_dataframe(alerts[0:7], "alerts2")
+
+    def Drop(self): 
+        pass
     
 
 
